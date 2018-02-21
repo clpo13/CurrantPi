@@ -12,8 +12,7 @@ $footer_data = $footer->getData();
 ?>
 
 <p><?php echo $footer_data->webserver; ?> - <?php echo $footer_data->php_version; ?></p>
-<p><?php echo $footer_data->cpu; ?></p>
-<p>Raspberry Pi <?php echo $footer_data->model; ?> (rev. <?php echo $footer_data->revision; ?>)</p>
+<p><?php echo $footer_data->cpu; ?> on a Raspberry Pi <?php echo $footer_data->model; ?> (rev. <?php echo $footer_data->revision; ?>)</p>
 
 <p>
   <a href="https://github.com/ColinWaddell/CurrantPi"><i class="demo-icon icon-github"></i></a>

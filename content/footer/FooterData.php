@@ -25,6 +25,7 @@ class FooterData implements CurrantModule
         $name = explode(': ', $name_full);
 
         // match revisions to model names
+        // https://elinux.org/RPi_HardwareHistory#Which_Pi_have_I_got.3F
         $model_arr = array(
           "Beta" => "B (Beta)",
           "0002" => "B",
