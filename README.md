@@ -14,7 +14,7 @@ Currant Pi will show you current information about your Raspberry Pi's:
 [Check out the Live Demo &rarr;](http://currantpi.colinwaddell.com/demo)
 
 <a href="http://currantpi.colinwaddell.com/demo">
-  <img src="https://raw.githubusercontent.com/ColinWaddell/CurrantPi/screenshots/img/screenshot.png" width="380"/>
+  <img src="https://raw.githubusercontent.com/clpo13/CurrantPi/screenshots/img/screenshot.png" width="380"/>
 </a>
 
 <hr />
@@ -28,60 +28,63 @@ There's a couple of routes to installing this. Follow the one which fits you bes
 #### Method \#1: I've already got a webserver and I'm comfortable using Git
 1. Clone this repo somewhere your webserver can see it, i.e.:
 
-    ````
-    git clone git@github.com:ColinWaddell/CurrantPi.git /var/www/html/currantpi
-    ````
+````bash
+git clone git@github.com:clpo13/CurrantPi.git /var/www/html/currantpi
+````
 2. Cross Fingers.
 3. Point your browser at your webserver.
 
 #### Method \#2: I've already got a webserver and I can easily drop some files into its working directory
-1. [Download the latest release](https://github.com/ColinWaddell/CurrantPi/archive/master.zip)
-2. Unzip the repository and move its contents to your web-root, or where ever you'd like this to live (i.e. ```/var/www/html/```)
+1. [Download the latest release](https://github.com/clpo13/CurrantPi/archive/master.zip)
+2. Unzip the repository and move its contents to your web-root, or where ever you'd like this to live (i.e. `/var/www/html/`)
 3. Visiting Currant by popping the address of your Raspberry Pi into a web-browser (i.e. [http://raspberrypi](http://raspberrypi))
 
 
 #### Method \#3: I have no webserver and need full instructions
-In the following instructions you can skip step ```1``` if you already have a webserver running. Please just swap out ```/var/www/html``` in the instructions with where you'd like Currant to live on your server. You can skip step ```2``` if you've no interest in creating a backup of your current web server's content.
+In the following instructions you can skip step `1` if you already have a webserver running. Please just swap out `/var/www/html` in the instructions with where you'd like Currant to live on your server. You can skip step `2` if you've no interest in creating a backup of your current web server's content.
 
 Just copy and paste each section into a terminal on your Rasbberry Pi and hit enter. You may be asked for a password depending on your configuration.
 
-1. First you'll need to have a webserver up and running on your Pi. The following will install and setup lighttp on your Raspberry Pi. I'm assuming you're running an installation which uses the ```apt``` distro system.
-    ```
-    sudo apt-get install lighttpd php5-cgi
-    sudo lighttpd-enable-mod fastcgi fastcgi-php
-    sudo service lighttpd force-reload
-    ```
+1. First you'll need to have a webserver up and running on your Pi. The following will install and setup lighttpd on your Raspberry Pi. I'm assuming you're running an installation which uses the `apt` distro system (such as Rasbpian).
+
+```bash
+sudo apt-get install lighttpd php5-cgi
+sudo lighttpd-enable-mod fastcgi fastcgi-php
+sudo service lighttpd force-reload
+```
 
 2. Next create a backup of your webserver's current content
 
-    ```
-    sudo mv /var/www/html /var/www/html_backup
-    sudo mkdir /var/www/html
-    ```
+```bash
+sudo mv /var/www/html /var/www/html_backup
+sudo mkdir /var/www/html
+```
 
 3. Install Currant.
 
-    ```
-    cd /tmp/
-    wget https://github.com/ColinWaddell/CurrantPi/archive/master.zip -O temp.zip
-    unzip temp.zip
-    rm temp.zip
-    sudo cp -r /tmp/CurrantPi-master/* /var/www/html/
-    rm -rf /tmp/CurrantPi-master
-    ```
+```bash
+cd /tmp/
+wget https://github.com/clpo13/CurrantPi/archive/master.zip -O temp.zip
+unzip temp.zip
+rm temp.zip
+sudo cp -r /tmp/CurrantPi-master/* /var/www/html/
+rm -rf /tmp/CurrantPi-master
+```
 4. Visiting Currant by popping the address of your Raspberry Pi into a web-browser (i.e. [http://raspberrypi](http://raspberrypi))
 
 <hr />
 
 Monitoring a wireless connection
 ================================
-If you'd prefer to get network data back for your wireless connection rather than your ethernet, open up ```content/network/NetworkData.php``` and change the property ```$interface``` as follows:
+If you'd prefer to get network data back for your wireless connection rather than your ethernet, open up `content/network/NetworkData.php` and change the property `$interface` as follows:
 
-    public $interface = 'wlan0';
+```php
+public $interface = 'wlan0';
+```
 
 API
 ===
-You can get all the information about your Raspberry Pi in the form of a JSON request. This allows CurrantPi to be used to supply data to any external service or your own web application by accessing ```api.php``` instead of ```index.php```
+You can get all the information about your Raspberry Pi in the form of a JSON request. This allows CurrantPi to be used to supply data to any external service or your own web application by accessing `api.php` instead of `index.php`
 
  * [http://raspberrypi/api.php](http://raspberrypi/api.php)
 
@@ -91,12 +94,12 @@ If you only want data for a specific module then append it to the request:
  * [http://raspberrypi/api.php?memory,load_average](http://raspberrypi?api.php/memory,load_average)
 
 Available modules are:
- * ```footer```
- * ```hardware```
- * ```load_average```
- * ```memory```
- * ```network```
- * ```storage```
+ * `footer`
+ * `hardware`
+ * `load_average`
+ * `memory`
+ * `network`
+ * `storage`
 
 Contributing
 ============
@@ -108,10 +111,10 @@ When contributing to CurrantPi keep in mind that the target audience wants to un
 
 **Code should be simple enough that any eager beginner can follow it.**
 
-*If you are keen to see Currant Pi implemented using an MVC framework, please see the [SlimMVC branch](https://github.com/ColinWaddell/CurrantPi/tree/slimmvc) created by github user [sio-iago](https://github.com/sio-iago).*
+*If you are keen to see Currant Pi implemented using an MVC framework, please see the [SlimMVC branch](https://github.com/clpo13/CurrantPi/tree/slimmvc) created by github user [sio-iago](https://github.com/sio-iago).*
 
 <hr />
 
 License
 =======
-<p>&copy; 2017 <a href="http://colinwaddell.com/">Colin Waddell</a> under the terms of the<a href="https://opensource.org/licenses/MIT"> MIT License.</a>
+<p>&copy; 2018 <a href="http://colinwaddell.com/">Colin Waddell</a> under the terms of the<a href="https://opensource.org/licenses/MIT"> MIT License.</a> Modifications by Cody Logan.
